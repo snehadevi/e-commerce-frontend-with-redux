@@ -35,16 +35,21 @@ const Slice = createSlice({
 
     ClearCart: (state, action) => {
       state.selectedProducts = [];
-      state.countTotal = [];
+      state.countTotal = 0;
       state.counts = {};
     },
 
     HandleInput: (state, action) => {
       const { product, value } = action.payload;
       //console.log(value);
-      state.counts[product.id] = Math.max(value, 0);
+      value !== ""
+        ? (state.counts[product.id] = Math.max(value, 1))
+        : (state.counts[product.id] = "");
       if (state.counts[product.id] === 0) {
-        const index = state.selectedProducts.indexOf(product);
+        const index = state.selectedProducts.findIndex(
+          (p) => p.id === product.id
+        );
+        //console.log(index, "here");
         state.selectedProducts.splice(index, 1);
       }
       let sum = 0;

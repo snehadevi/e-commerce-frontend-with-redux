@@ -5,6 +5,7 @@ import { Disclosure } from "@headlessui/react";
 import { Link } from "react-router-dom";
 import ShoppingCarts from "./ShoppingCarts";
 import "../css/tailwind.css";
+import { useSelector } from "react-redux";
 
 const navItem = [
   { name: "HOME", to: "/", current: true },
@@ -14,8 +15,13 @@ const navItem = [
 
 function Navigation({ currentItem }) {
   //console.log(currentItem);
+  const { countTotal } = useSelector((state) => state);
   const [hidden, sethidden] = useState(false);
-  const { open, setOpen, countTotal } = useContext(Context);
+  const [open, setOpen] = useState(false);
+  // const {
+  //   // open, setOpen,
+  //   countTotal,
+  // } = useContext(Context);
 
   const handleClick = (item) => {
     navItem.forEach(function (obj) {
@@ -32,7 +38,7 @@ function Navigation({ currentItem }) {
 
   return (
     <Disclosure>
-      <ShoppingCarts />
+      <ShoppingCarts open={open} setOpen={setOpen} />
       <div className="fixed w-full bg-gray-200 shadow-lg flex flex-col top-0 p-3">
         <div className="flex flex-row justify-between">
           <div className="flex flex-row">

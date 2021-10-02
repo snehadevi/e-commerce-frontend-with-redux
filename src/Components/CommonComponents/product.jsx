@@ -1,4 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
+import { useDispatch } from "react-redux";
+import { actions } from "../../Redux/Slice";
+import { useSelector } from "react-redux";
 import {
   ArrowRight,
   MinusCircle,
@@ -8,16 +11,18 @@ import {
 import { Context } from "../../Context API/GlobalContext";
 
 function Product({ product }) {
+  const dispatch = useDispatch();
+  const { selectedProducts, counts } = useSelector((state) => state);
   const {
     products,
     setcountTotal,
-    selectedProducts,
+    //selectedProducts,
     setselectedProducts,
     calculateTotalCount,
   } = useContext(Context);
 
   const index = selectedProducts.findIndex((item) => item.id === product.id);
-  const count = index !== -1 ? selectedProducts[index].count : 0;
+  const count = counts[product.id];
 
   const handleIncrease = () => {
     const index = selectedProducts.findIndex((item) => item.id === product.id);
@@ -85,7 +90,7 @@ function Product({ product }) {
         {!count > 0 && (
           <div className="justify-between xl:flex flex-row ">
             <a
-              onClick={handleIncrease}
+              onClick={() => dispatch(actions.Increment({ product }))}
               className="justify-center bg-gradient-to-r from-red-600 to-pink-500 rounded-full py-2 px-4 text-gray-50 flex flex-row hover:from-pink-600 hover:to-pink-600 object-bottom"
             >
               <ShoppingCartOutline />
@@ -100,9 +105,13 @@ function Product({ product }) {
 
         {count > 0 && (
           <a className="justify-center bg-gradient-to-r from-red-600 to-pink-500 rounded-full py-2 px-6 text-gray-50 flex flex-row hover:from-pink-600 hover:to-pink-600 object-bottom">
-            <MinusCircle onClick={handleDecrease} />
+            <MinusCircle
+              onClick={() => dispatch(actions.Decrement({ product }))}
+            />
             <h1 className="text-gray-50 mx-3">{count}</h1>
-            <PlusCircle onClick={handleIncrease} />
+            <PlusCircle
+              onClick={() => dispatch(actions.Increment({ product }))}
+            />
           </a>
         )}
       </div>

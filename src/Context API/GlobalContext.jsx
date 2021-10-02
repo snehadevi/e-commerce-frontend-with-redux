@@ -6,7 +6,7 @@ export const Context = createContext();
 
 function GlobalContext(props) {
   const [products, setproducts] = useState([]);
-  const [open, setOpen] = useState(false);
+  // const [open, setOpen] = useState(false);
   let productList = localStorage.getItem("products");
   const [selectedProducts, setselectedProducts] = useState([]);
   const [countTotal, setcountTotal] = useState(0);
@@ -34,8 +34,8 @@ function GlobalContext(props) {
   return (
     <Context.Provider
       value={{
-        open,
-        setOpen,
+        // open,
+        // setOpen,
         products,
         setproducts,
         selectedProducts,

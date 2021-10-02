@@ -4,19 +4,24 @@ import { XIcon } from "@heroicons/react/outline";
 import { Context } from "../Context API/GlobalContext";
 import CartItem from "./CartItem";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { actions } from "../Redux/Slice";
 
-export default function ShoppingCarts() {
+export default function ShoppingCarts({ open, setOpen }) {
+  // const [open, setOpen] = useState(false);
+  const dispatch = useDispatch();
   const {
-    open,
-    setOpen,
-    selectedProducts,
+    // open,
+    // setOpen,
+    //selectedProducts,
     setselectedProducts,
     setcountTotal,
   } = useContext(Context);
   // const [subTotal, setsubTotal] = useState(0);
-
+  const { selectedProducts, counts } = useSelector((state) => state);
   let subTotal = 0;
-  selectedProducts.map((p) => (subTotal += p.count * p.price));
+  selectedProducts.map((p) => (subTotal += counts[p.id] * p.price));
   //console.log(subTotal);
 
   // const selectedTemp = selectedProducts.filter((p) => p.count !== 0);
@@ -115,7 +120,7 @@ export default function ShoppingCarts() {
                       </div>
                       <div className="mt-6">
                         <a
-                          onClick={handleOnclick}
+                          onClick={() => dispatch(actions.ClearCart())}
                           className="flex justify-center items-center px-3 sm:px-14 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-gradient-to-r from-red-600 to-pink-500 hover:from-pink-600 hover:to-pink-600 object-bottom"
                         >
                           Clear Cart

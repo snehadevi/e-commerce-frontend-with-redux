@@ -1,14 +1,19 @@
 import React, { useState, useContext } from "react";
 import { Context } from "../Context API/GlobalContext";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { actions } from "../Redux/Slice";
 
 function CartItem({ product, total }) {
+  const dispatch = useDispatch();
+  const { selectedProducts, counts } = useSelector((state) => state);
   const {
-    selectedProducts,
+    //selectedProducts,
     setcountTotal,
     setselectedProducts,
     calculateTotalCount,
   } = useContext(Context);
-  const [count, setcount] = useState(product.count);
+  //const [count, setcount] = useState(counts[product.id]);
 
   // function calculateTotalCount(selectedList) {
   //   let count = 0;
@@ -17,6 +22,9 @@ function CartItem({ product, total }) {
   //   });
   //   return count;
   // }
+  const OnChange = (value) => {
+    dispatch(actions.HandleInput({ product, value }));
+  };
 
   const handleChange = (e) => {
     const inputValue = e.target.value;
@@ -60,7 +68,7 @@ function CartItem({ product, total }) {
             <h3>
               <a>{product.title}</a>
             </h3>
-            <p className="ml-4">${count * product.price}</p>
+            <p className="ml-4">${counts[product.id] * product.price}</p>
           </div>
           {/* <p className="mt-1 text-sm text-gray-500">
                                     {product.description}
@@ -71,10 +79,10 @@ function CartItem({ product, total }) {
             {/* Quantity{" "} */}
             <input
               required
+              value={counts[product.id]}
               type="number"
-              value={count}
               className="w-8 h-8 focus:outline-none focus:ring focus:border-blue-300 opacity-100"
-              onChange={handleChange}
+              onChange={(e) => OnChange(e.target.value)}
             />
           </div>
 
@@ -82,7 +90,7 @@ function CartItem({ product, total }) {
             <button
               type="button"
               className="font-medium text-indigo-600 hover:text-red-500"
-              onClick={() => handleOnclick(product)}
+              onClick={() => dispatch(actions.RemoveProduct({ product }))}
             >
               Remove
             </button>

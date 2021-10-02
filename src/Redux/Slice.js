@@ -25,11 +25,11 @@ const Slice = createSlice({
       const { product } = action.payload;
       const index = state.selectedProducts.indexOf(product);
 
+      state.counts[product.id] = Math.max(state.counts[product.id] - 1, 0);
       if (state.counts[product.id] === 0)
         state.selectedProducts = state.selectedProducts.filter(
-          (item) => item.id != product.id
+          (item) => item.id !== product.id
         );
-      state.counts[product.id] = Math.max(state.counts[product.id] - 1, 0);
       state.countTotal -= 1;
     },
 
@@ -41,8 +41,12 @@ const Slice = createSlice({
 
     HandleInput: (state, action) => {
       const { product, value } = action.payload;
-      console.log(value);
+      //console.log(value);
       state.counts[product.id] = Math.max(value, 0);
+      if (state.counts[product.id] === 0) {
+        const index = state.selectedProducts.indexOf(product);
+        state.selectedProducts.splice(index, 1);
+      }
       let sum = 0;
       for (let c of Object.values(state.counts)) {
         sum += c;
@@ -52,7 +56,9 @@ const Slice = createSlice({
 
     RemoveProduct: (state, action) => {
       const { product } = action.payload;
-      const index = state.selectedProducts.indexOf(product);
+      const index = state.selectedProducts.findIndex(
+        (p) => p.id === product.id
+      );
       state.selectedProducts.splice(index, 1);
       state.countTotal -= state.counts[product.id];
       state.counts[product.id] = 0;

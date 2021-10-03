@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import { useDispatch } from "react-redux";
 import { actions } from "../../Redux/Slice";
 import { useSelector } from "react-redux";
@@ -8,60 +8,12 @@ import {
   PlusCircle,
   ShoppingCartOutline,
 } from "heroicons-react";
-import { Context } from "../../Context API/GlobalContext";
 
 function Product({ product }) {
   const dispatch = useDispatch();
   const { selectedProducts, counts } = useSelector((state) => state);
-  const {
-    products,
-    setcountTotal,
-    //selectedProducts,
-    setselectedProducts,
-    calculateTotalCount,
-  } = useContext(Context);
 
-  const index = selectedProducts.findIndex((item) => item.id === product.id);
   const count = counts[product.id];
-
-  const handleIncrease = () => {
-    const index = selectedProducts.findIndex((item) => item.id === product.id);
-    if (index !== -1) {
-      var temp = { ...selectedProducts[index] };
-      selectedProducts[index].count = parseInt(temp.count) + 1;
-      temp.count += 1;
-    } else {
-      const index = products.findIndex((item) => item.id === product.id);
-      var temp = { ...products[index] };
-      temp.count = 1;
-    }
-
-    handleSelectedProducts(temp);
-  };
-  const handleDecrease = () => {
-    const index = selectedProducts.findIndex((item) => item.id === product.id);
-    const temp = { ...selectedProducts[index] };
-    selectedProducts[index].count = parseInt(temp.count) - 1;
-    temp.count -= 1;
-
-    handleSelectedProducts(temp);
-  };
-  const handleSelectedProducts = (temp) => {
-    const index = selectedProducts.findIndex((item) => item.id === temp.id);
-    if (index !== -1) {
-      if (temp.count === 0) {
-        //console.log("here");
-        const selectedTemp = selectedProducts.filter((p) => p.id !== temp.id);
-        setselectedProducts(selectedTemp);
-      }
-    } else {
-      if (temp.count > 0) {
-        selectedProducts.push(temp);
-      }
-    }
-    let tempCount = calculateTotalCount(selectedProducts);
-    setcountTotal(tempCount);
-  };
 
   return (
     <div className="shadow-xl p-3 sm:w-80">

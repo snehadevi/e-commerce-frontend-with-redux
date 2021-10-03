@@ -8,6 +8,7 @@ const Slice = createSlice({
     counts: {},
     countTotal: 0,
     orderList: [],
+    orderCount: {},
   },
 
   reducers: {
@@ -67,6 +68,14 @@ const Slice = createSlice({
       state.selectedProducts.splice(index, 1);
       state.countTotal -= state.counts[product.id];
       state.counts[product.id] = 0;
+    },
+
+    Submit: (state, action) => {
+      state.orderList = state.selectedProducts;
+      state.orderCount = state.counts;
+      state.selectedProducts = [];
+      state.countTotal = 0;
+      state.counts = {};
     },
   },
 });

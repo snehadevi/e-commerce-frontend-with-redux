@@ -1,5 +1,4 @@
-import React, { useContext, useState } from "react";
-import { Context } from "../Context API/GlobalContext";
+import React, { useState } from "react";
 import { MenuAlt1Outline, ShoppingCartOutline } from "heroicons-react";
 import { Disclosure } from "@headlessui/react";
 import { Link } from "react-router-dom";
@@ -14,24 +13,16 @@ const navItem = [
 ];
 
 function Navigation({ currentItem }) {
-  //console.log(currentItem);
   const { countTotal } = useSelector((state) => state);
   const [hidden, sethidden] = useState(false);
   const [open, setOpen] = useState(false);
-  // const {
-  //   // open, setOpen,
-  //   countTotal,
-  // } = useContext(Context);
 
   const handleClick = (item) => {
     navItem.forEach(function (obj) {
-      //console.log(obj.name, item.name);
       if (obj.name !== item.name) {
         obj.current = false;
-        //console.log("clicked");
       } else {
         obj.current = true;
-        //console.log("not");
       }
     });
   };

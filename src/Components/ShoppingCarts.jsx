@@ -9,27 +9,11 @@ import { useDispatch } from "react-redux";
 import { actions } from "../Redux/Slice";
 
 export default function ShoppingCarts({ open, setOpen }) {
-  // const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
-  const {
-    // open,
-    // setOpen,
-    //selectedProducts,
-    setselectedProducts,
-    setcountTotal,
-  } = useContext(Context);
-  // const [subTotal, setsubTotal] = useState(0);
+
   const { selectedProducts, counts } = useSelector((state) => state);
   let subTotal = 0;
   selectedProducts.map((p) => (subTotal += counts[p.id] * p.price));
-  //console.log(subTotal);
-
-  // const selectedTemp = selectedProducts.filter((p) => p.count !== 0);
-
-  const handleOnclick = () => {
-    setselectedProducts([]);
-    setcountTotal(0);
-  };
 
   return (
     <Transition.Root show={open} as={Fragment}>

@@ -1,39 +1,26 @@
 import React, { useContext, useState } from "react";
 import Navigation from "../Components/Navigation";
 import { Link } from "react-router-dom";
-import { Context } from "../Context API/GlobalContext";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { actions } from "../Redux/Slice";
 
 function CheckOut({ history }) {
-  const {
-    selectedProducts,
-    setselectedProducts,
-    countTotal,
-    setcountTotal,
-    setorderList,
-  } = useContext(Context);
-  //console.log(selectedProducts);
+  const dispatch = useDispatch();
+  const { selectedProducts, counts } = useSelector((state) => state);
 
   if (selectedProducts.length === 0) history.push("/");
 
-  const [hidden, sethidden] = useState(true);
-
-  //console.log(ProductList, total);
-
   let subTotal = 0;
-  selectedProducts.map((p) => (subTotal += p.count * p.price));
+  selectedProducts.map((p) => (subTotal += counts[p.id] * p.price));
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    //console.log("submitted", history);
-    sethidden(false);
-    setorderList(selectedProducts);
-    setselectedProducts([]);
-    setcountTotal(0);
+    dispatch(actions.Submit());
     history.push("/checkout/Success");
   };
   return (
     <div>
-      {/* {hidden && ( */}
       <div className="bg-gray-50">
         <form id="myForm" onSubmit={handleSubmit}>
           <div className="pb-16 pt-4 mx-auto mt-20 sm: relative container gap-6 sm:grid grid-cols-12 items-start">
@@ -107,7 +94,6 @@ function CheckOut({ history }) {
                     <input
                       type="text"
                       className="rounded-lg shadow-lg block w-full border border-purple-600  px-4 py-3 text-gray-600 text-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent "
-                      // className="block w-full border border-purple-600 px-4 py-3 text-gray-600 text-sm rounded placeholder-gray-400 focus:border-primary focus:ring-0"
                     />
                   </div>
                   <div>
@@ -128,7 +114,6 @@ function CheckOut({ history }) {
                     <input
                       type="text"
                       className="rounded-lg shadow-lg block w-full border border-purple-600 px-4 py-3 text-gray-600 text-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent "
-                      // className="block w-full border border-purple-600 px-4 py-3 text-gray-600 text-sm rounded placeholder-gray-400 focus:border-primary focus:ring-0"
                     />
                   </div>
                   <div>
@@ -150,7 +135,6 @@ function CheckOut({ history }) {
               </h4>
               <div className="space-y-2">
                 {selectedProducts.map((item) => (
-                  //(item) => console.log(item.name)
                   <div className="flex justify-between" key={item.id}>
                     <div>
                       <h5 className="w-24 sm:w-44 text-gray-800 font-medium">
@@ -160,9 +144,9 @@ function CheckOut({ history }) {
                     </div>
                     <p className="text-gray-600 w-16">{item.price}</p>
                     <p className="text-gray-600">x</p>
-                    <p className="text-gray-600">{item.count}</p>
+                    <p className="text-gray-600">{counts[item.id]}</p>
                     <p className="text-gray-800 font-medium">
-                      ${item.count * item.price}
+                      ${counts[item.id] * item.price}
                     </p>
                   </div>
                 ))}
@@ -210,8 +194,6 @@ function CheckOut({ history }) {
         </div>
         <Navigation currentItem="" />
       </div>
-      {/* )}
-      {!hidden && <Success subTotal={total} selectedProducts={ProductList} />} */}
     </div>
   );
 }

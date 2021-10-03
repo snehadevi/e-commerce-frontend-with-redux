@@ -1,12 +1,14 @@
 import React, { useContext } from "react";
 import Navigation from "../Components/Navigation";
-import { Context } from "../Context API/GlobalContext";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+
 function Success({ history }) {
-  const { orderList } = useContext(Context);
+  const { orderList, orderCount } = useSelector((state) => state);
+
   if (!orderList || orderList.length === 0) history.push("/");
   let subTotal = 0;
-  orderList.map((p) => (subTotal += p.count * p.price));
+  orderList.map((p) => (subTotal += orderCount[p.id] * p.price));
   return (
     <div className="">
       <div className="w-screen relative container grid grid-cols items-start pb-16 pt-4 mx-auto mt-20">
@@ -29,7 +31,6 @@ function Success({ history }) {
                 Order Summery
               </h4>
               {orderList.map((item) => (
-                //(item) => console.log(item.name)
                 <div
                   className="flex justify-between p-2 border-b border-gray-200"
                   key={item.id}
@@ -52,17 +53,11 @@ function Success({ history }) {
                   <div className="flex flex-col sm:flex-row">
                     <p className="text-gray-600 w-16">{item.price}</p>
                     <p className="text-gray-600">x</p>
-                    <p className="text-gray-600">{item.count}</p>
+                    <p className="text-gray-600">{orderCount[item.id]}</p>
                     <p className="sm:ml-20 text-gray-800 font-medium">
-                      ${item.count * item.price}
+                      ${orderCount[item.id] * item.price}
                     </p>
                   </div>
-                  {/* <p className="text-gray-600 w-16">{item.price}</p>
-                  <p className="text-gray-600">x</p>
-                  <p className="text-gray-600">{item.count}</p>
-                  <p className="text-gray-800 font-medium">
-                    ${item.count * item.price}
-                  </p> */}
                 </div>
               ))}
 

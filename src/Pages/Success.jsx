@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 function Success({ history }) {
-  const { orderList, orderCount } = useSelector((state) => state);
+  const { orderList, orderCount, customerInfo } = useSelector((state) => state);
 
   if (!orderList || orderList.length === 0) history.push("/");
   let subTotal = 0;
@@ -78,13 +78,41 @@ function Success({ history }) {
                   <h1 className="text-gray-800 sm:text-lg mb-4 font-medium uppercase">
                     Shipping Address
                   </h1>
-                  {}
+                  <div>
+                    <p>
+                      Address: {customerInfo["Address"]},&nbsp;
+                      {customerInfo["City"]},
+                    </p>
+                    <p>{customerInfo["Country"]},</p>
+                    {customerInfo["Province"] ? (
+                      <p>{customerInfo["Province"]},</p>
+                    ) : (
+                      <p></p>
+                    )}
+                    {customerInfo["Postal Code"] ? (
+                      <p>{customerInfo["Postal Code"]}.</p>
+                    ) : (
+                      <p></p>
+                    )}
+                  </div>
                 </div>
                 <div>
                   <h1 className="text-gray-800 sm:text-lg mb-4 font-medium uppercase">
                     Customer Details
                   </h1>
-                  {}
+                  <div>
+                    <p>
+                      {customerInfo["First Name"]}&nbsp;
+                      {customerInfo["Last Name"]}
+                    </p>
+                    <p>Phone: {customerInfo["Phone"]}</p>
+                    <p>Email: {customerInfo["Email"]}</p>
+                    {customerInfo["Company"] ? (
+                      <p>Company: {customerInfo["Company"]}</p>
+                    ) : (
+                      <p></p>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>

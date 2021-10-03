@@ -19,6 +19,10 @@ function CheckOut({ history }) {
     dispatch(actions.Submit());
     history.push("/checkout/Success");
   };
+
+  const handleChange = (key, value) => {
+    dispatch(actions.CustomerDetails({ key, value }));
+  };
   return (
     <div>
       <div className="bg-gray-50">
@@ -35,7 +39,12 @@ function CheckOut({ history }) {
                       First Name <span className="text-red-500">*</span>
                     </label>
                     <input
+                      required
                       type="text"
+                      name="First Name"
+                      onChange={(e) =>
+                        handleChange(e.target.name, e.target.value)
+                      }
                       className="rounded-lg shadow-lg block w-full border border-purple-600 px-4 py-3 text-gray-600 text-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent "
                       // className="block w-full border border-purple-600 px-4 py-3 text-gray-600 text-sm rounded placeholder-gray-400 focus:border-primary focus:ring-0"
                     />
@@ -45,26 +54,41 @@ function CheckOut({ history }) {
                       Last Name <span className="text-red-500">*</span>
                     </label>
                     <input
+                      required
                       type="text"
+                      name="Last Name"
+                      onChange={(e) =>
+                        handleChange(e.target.name, e.target.value)
+                      }
                       className="rounded-lg shadow-lg block w-full border border-purple-600 px-4 py-3 text-gray-600 text-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent "
                     />
                   </div>
                 </div>
                 <div>
                   <label className="text-left text-gray-600 mb-2 block">
-                    Phone
+                    Phone <span className="text-red-500">*</span>
                   </label>
                   <input
+                    required
                     type="text"
+                    name="Phone"
+                    onChange={(e) =>
+                      handleChange(e.target.name, e.target.value)
+                    }
                     className="rounded-lg shadow-lg block w-full border border-purple-600 px-4 py-3 text-gray-600 text-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent "
                   />
                 </div>
                 <div>
                   <label className="text-left text-gray-600 mb-2 block">
-                    Email
+                    Email <span className="text-red-500">*</span>
                   </label>
                   <input
-                    type="text"
+                    required
+                    type="email"
+                    name="Email"
+                    onChange={(e) =>
+                      handleChange(e.target.name, e.target.value)
+                    }
                     className="rounded-lg shadow-lg block w-full border border-purple-600 px-4 py-3 text-gray-600 text-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent "
                   />
                 </div>
@@ -74,15 +98,24 @@ function CheckOut({ history }) {
                   </label>
                   <input
                     type="text"
+                    name="Company"
+                    onChange={(e) =>
+                      handleChange(e.target.name, e.target.value)
+                    }
                     className="rounded-lg shadow-lg block w-full border border-purple-600 px-4 py-3 text-gray-600 text-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent "
                   />
                 </div>
                 <div>
                   <label className="text-left text-gray-600 mb-2 block">
-                    Address
+                    Address <span className="text-red-500">*</span>
                   </label>
                   <input
+                    required
                     type="text"
+                    name="Address"
+                    onChange={(e) =>
+                      handleChange(e.target.name, e.target.value)
+                    }
                     className="rounded-lg shadow-lg block w-full border border-purple-600 px-4 py-3 text-gray-600 text-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent "
                   />
                 </div>
@@ -92,7 +125,12 @@ function CheckOut({ history }) {
                       City <span className="text-red-500">*</span>
                     </label>
                     <input
+                      required
                       type="text"
+                      name="City"
+                      onChange={(e) =>
+                        handleChange(e.target.name, e.target.value)
+                      }
                       className="rounded-lg shadow-lg block w-full border border-purple-600  px-4 py-3 text-gray-600 text-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent "
                     />
                   </div>
@@ -101,27 +139,38 @@ function CheckOut({ history }) {
                       Country <span className="text-red-500">*</span>
                     </label>
                     <input
+                      required
                       type="text"
+                      name="Country"
+                      onChange={(e) =>
+                        handleChange(e.target.name, e.target.value)
+                      }
                       className="rounded-lg shadow-lg block w-full border border-purple-600 px-4 py-3 text-gray-600 text-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent "
                     />
                   </div>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="text-gray-600 mb-2 block">
-                      Province <span className="text-red-500">*</span>
-                    </label>
+                    <label className="text-gray-600 mb-2 block">Province</label>
                     <input
                       type="text"
+                      name="Province"
+                      onChange={(e) =>
+                        handleChange(e.target.name, e.target.value)
+                      }
                       className="rounded-lg shadow-lg block w-full border border-purple-600 px-4 py-3 text-gray-600 text-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent "
                     />
                   </div>
                   <div>
                     <label className="text-gray-600 mb-2 block">
-                      Postal Code <span className="text-red-500">*</span>
+                      Postal Code
                     </label>
                     <input
                       type="text"
+                      name="Postal Code"
+                      onChange={(e) =>
+                        handleChange(e.target.name, e.target.value)
+                      }
                       className="rounded-lg shadow-lg block w-full border border-purple-600 px-4 py-3 text-gray-600 text-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent "
                     />
                   </div>
@@ -184,7 +233,7 @@ function CheckOut({ history }) {
             </div>
           </div>
         </form>
-        <div>
+        <div className="mb-64">
           <Link
             to="/"
             className="block mx-auto w-60 text-center border border-purple-600 px-4 py-3 text-lg rounded-full bg-purple-600 text-white"

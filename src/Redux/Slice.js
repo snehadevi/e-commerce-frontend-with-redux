@@ -9,6 +9,8 @@ const Slice = createSlice({
     countTotal: 0,
     orderList: [],
     orderCount: {},
+    customerInfo: {},
+    shippingDetails: {},
   },
 
   reducers: {
@@ -81,6 +83,17 @@ const Slice = createSlice({
       state.countTotal = 0;
       state.counts = {};
     },
+
+    CustomerDetails: (state, action) => {
+      const { key, value } = action.payload;
+      state.customerInfo[key] = value;
+      console.log(state.customerInfo);
+    },
+
+    // ShippingAddress: (state, action) => {
+    //   const { key, value } = action.payload;
+    //   state.shippingDetails.push({ key: value });
+    // },
   },
 });
 

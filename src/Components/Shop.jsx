@@ -1,5 +1,5 @@
 import Navigation from "./Navigation";
-import React, { useContext } from "react";
+import React from "react";
 import Product from "./CommonComponents/product";
 import "../css/tailwind.css";
 import { useSelector } from "react-redux";

@@ -1,16 +1,18 @@
 import React from "react";
 import "./App.css";
 import "./css/tailwind.css";
-import GlobalContext from "./Context API/GlobalContext";
+
 import Routing from "./Routing";
+import { useDispatch } from "react-redux";
+import { getProducts } from "./Redux/store";
 
 function App() {
+  const dispatch = useDispatch();
+  dispatch(getProducts());
   return (
-    <GlobalContext>
-      <div className="App">
-        <Routing />
-      </div>
-    </GlobalContext>
+    <div className="App">
+      <Routing />
+    </div>
   );
 }
 

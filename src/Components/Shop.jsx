@@ -1,11 +1,12 @@
 import Navigation from "./Navigation";
 import React, { useContext } from "react";
 import Product from "./CommonComponents/product";
-import { Context } from "../Context API/GlobalContext";
 import "../css/tailwind.css";
+import { useSelector } from "react-redux";
 
 export default function Shop() {
-  const { products } = useContext(Context);
+  // const { products } = useContext(Context);
+  const { products } = useSelector((state) => state);
 
   return (
     <div>

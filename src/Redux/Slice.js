@@ -12,6 +12,10 @@ const Slice = createSlice({
   },
 
   reducers: {
+    UpdateProducts: (state, action) => {
+      state.products = action.payload.data;
+    },
+
     Increment: (state, action) => {
       const { product } = action.payload;
       if (!state.counts[product.id]) {

@@ -1,7 +1,6 @@
 import { Fragment, useState, useContext } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XIcon } from "@heroicons/react/outline";
-import { Context } from "../Context API/GlobalContext";
 import CartItem from "./CartItem";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";

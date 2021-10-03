@@ -4,14 +4,12 @@ import Shop from "./Components/Shop";
 import CheckOut from "./Pages/CheckOut";
 import Contact from "./Pages/Contact";
 import Success from "./Pages/Success";
-import { useContext } from "react";
-import { Context } from "./Context API/GlobalContext";
+
 import Blog from "./Pages/Blog";
 import NotFound from "./Pages/NotFound";
 import "../src/css/tailwind.css";
 
 function Routing() {
-  const { selectedProducts } = useContext(Context);
   return (
     <div>
       <Switch>

@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 
 const navItem = [
   { name: "HOME", to: "/", current: true },
-  { name: "BLOG", to: "/Blog", current: false },
+  { name: "ABOUT", to: "/About", current: false },
   { name: "CONTACT", to: "/Contact", current: false },
 ];
 
@@ -30,7 +30,7 @@ function Navigation({ currentItem }) {
   return (
     <Disclosure>
       <ShoppingCarts open={open} setOpen={setOpen} />
-      <div className="fixed w-full bg-gray-200 shadow-lg flex flex-col top-0 p-3">
+      <div className="fixed w-full bg-purple-200 shadow-lg flex flex-col top-0 p-3">
         <div className="flex flex-row justify-between">
           <div className="flex flex-row">
             <div>

@@ -16,7 +16,7 @@ function About() {
       <div className=" flex w-full min-h-screen justify-center items-center">
         <div className="flex flex-col sm:flex-row bg-gray-700 h-full sm:h-400 w-full max-w-4xl rounded-xl shadow-lg text-white overflow-hidden">
           <div className="bg-cyan-600 p-8 w-full sm:w-1/4 min-w-min h-full">
-            <h1 className="font-bold text-4xl tracking-wide">SHOP CIRLE</h1>
+            <h1 className="font-bold text-4xl tracking-wide">SHOP CICRLE</h1>
             <p className="pt-2 text-cyan-100">Your trustworthy partner!</p>
           </div>
           <div className="bg-gray-400 p-8 w-full sm:w-3/4">

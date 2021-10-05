@@ -7,16 +7,18 @@ import Success from "./Pages/Success";
 import NotFound from "./Pages/NotFound";
 import "../src/css/tailwind.css";
 import About from "./Pages/About";
+import ProductDetails from "./Pages/ProductDetails";
 
 function Routing() {
   return (
     <div>
       <Switch>
         <Route exact path="/" component={Shop} />
+        <Route exact path="/About" component={About} />
         <Route exact path="/checkout" component={CheckOut} />
         <Route exact path="/checkout/Success" component={Success} />
         <Route exact path="/Contact" component={Contact} />
-        <Route exact path="/About" component={About} />
+        <Route exact path="/:id" component={ProductDetails} />
         <Route path="*" component={NotFound} />
       </Switch>
     </div>

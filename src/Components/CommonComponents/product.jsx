@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { useDispatch } from "react-redux";
 import { actions } from "../../Redux/Slice";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import {
   ArrowRight,
   MinusCircle,
@@ -48,10 +49,13 @@ function Product({ product }) {
               <ShoppingCartOutline />
               <h1 className="cursor-pointer">Add to cart</h1>
             </a>
-            <a className="justify-center bg-purple-600 rounded-full py-2 px-4 text-gray-50 my-2 xl:my-0 flex flex-row hover:bg-purple-800 object-bottom">
+            <Link
+              to={`/${product.id}`}
+              className="justify-center bg-purple-600 rounded-full py-2 px-4 text-gray-50 my-2 xl:my-0 flex flex-row hover:bg-purple-800 object-bottom"
+            >
               <ArrowRight />
               <h1 className="cursor-pointer">View Details</h1>
-            </a>
+            </Link>
           </div>
         )}
 

@@ -30,7 +30,7 @@ function Navigation({ currentItem }) {
   return (
     <Disclosure>
       <ShoppingCarts open={open} setOpen={setOpen} />
-      <div className="fixed w-full bg-purple-200 shadow-lg flex flex-col top-0 p-3">
+      <div className="fixed w-full bg-purple-800 shadow-lg flex flex-col top-0 p-3">
         <div className="flex flex-row justify-between">
           <div className="flex flex-row">
             <div>
@@ -40,7 +40,7 @@ function Navigation({ currentItem }) {
             </div>
             <Link to="/" className="flex flex-row">
               <div className="sm:bg-gradient-to-r from-purple-400 to-red-400 w-10 h-10 rounded-lg"></div>
-              <h1 className="text-lg text-gray-600 sm:text-xl sm:mt-1 sm:ml-2 lg:text-3xl">
+              <h1 className="text-lg text-white font-bold sm:text-xl sm:mt-1 sm:ml-2 lg:text-3xl">
                 SHOP CIRCLE
               </h1>
             </Link>
@@ -53,8 +53,8 @@ function Navigation({ currentItem }) {
                     to={item.to}
                     className={
                       item.name === currentItem
-                        ? "bg-purple-500 text-white p-4"
-                        : "text-gray-600 hover:text-purple-600 p-4"
+                        ? "bg-purple-700 text-white p-4"
+                        : "text-white hover:text-teal-500 p-4"
                     }
                   >
                     {item.name}
@@ -66,7 +66,7 @@ function Navigation({ currentItem }) {
               <div>
                 <a
                   onClick={() => setOpen(true)}
-                  className="bg-purple-600 text-gray-50 hover:bg-purple-700 p-3 px-5 rounded-full sm:mr-5"
+                  className="bg-purple-700 shadow-lg text-gray-50 hover:bg-purple-600 p-3 px-5 rounded-full sm:mr-5"
                 >
                   <ShoppingCartOutline className="inline-block" />
                   {countTotal}

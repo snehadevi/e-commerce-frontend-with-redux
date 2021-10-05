@@ -10,7 +10,6 @@ const Slice = createSlice({
     orderList: [],
     orderCount: {},
     customerInfo: {},
-    shippingDetails: {},
   },
 
   reducers: {
@@ -90,10 +89,11 @@ const Slice = createSlice({
       console.log(state.customerInfo);
     },
 
-    // ShippingAddress: (state, action) => {
-    //   const { key, value } = action.payload;
-    //   state.shippingDetails.push({ key: value });
-    // },
+    ClearOrderList: (state, action) => {
+      state.orderList = [];
+      state.orderCount = {};
+      state.customerInfo = {};
+    },
   },
 });
 

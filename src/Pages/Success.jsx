@@ -2,8 +2,11 @@ import React, { useContext } from "react";
 import Navigation from "../Components/Navigation";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { actions } from "../Redux/Slice";
 
 function Success({ history }) {
+  const dispatch = useDispatch();
   const { orderList, orderCount, customerInfo } = useSelector((state) => state);
 
   if (!orderList || orderList.length === 0) history.push("/");
@@ -116,7 +119,7 @@ function Success({ history }) {
                 </div>
               </div>
             </div>
-            <div>
+            <div onClick={() => dispatch(actions.ClearOrderList())}>
               <Link
                 to="/"
                 className="block mx-auto w-44 sm:w-60 text-center border border-purple-600 px-4 py-3 text-lg rounded-full bg-purple-600 text-white mb-4"

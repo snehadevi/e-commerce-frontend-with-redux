@@ -24,7 +24,7 @@ const Slice = createSlice({
       }
       state.counts[product.id] = (state.counts[product.id] || 0) + 1;
 
-      state.countTotal += 1;
+      state.countTotal = parseInt(state.countTotal) + 1;
     },
 
     Decrement: (state, action) => {
@@ -36,7 +36,8 @@ const Slice = createSlice({
         state.selectedProducts = state.selectedProducts.filter(
           (item) => item.id !== product.id
         );
-      state.countTotal -= 1;
+      if (state.countTotal >= 1)
+        state.countTotal = parseInt(state.countTotal) - 1;
     },
 
     ClearCart: (state, action) => {

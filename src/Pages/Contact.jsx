@@ -2,7 +2,8 @@ import { LocationMarker, Mail, Phone } from "heroicons-react";
 import React from "react";
 import Navigation from "../Components/Navigation";
 import { BsFacebook, BsLinkedin } from "react-icons/bs";
-function Contact() {
+import { Link } from "react-router-dom";
+function Contact({ history }) {
   return (
     // <div>
     //   <h1 className="mt-20">Contact Us</h1>
@@ -61,13 +62,17 @@ function Contact() {
             <div className="absolute z-0 -right-20 -top-20 w-40 h-40 bg-teal-400 rounded-full"></div>
             <div className="absolute z-0 -left-28 -bottom-20 w-40 h-40 bg-teal-400 rounded-full"></div>
             <div className="relative z-10 bg-white rounded-xl shadow-lg p-8 text-gray-600">
-              <form action="" className="flex flex-col space-y-4">
+              <form
+                onSubmit={() => history.push("/")}
+                className="flex flex-col space-y-4"
+              >
                 <div>
                   <label htmlFor="" className="text-sm">
                     Your Name
                   </label>
 
                   <input
+                    required
                     type="text"
                     placeholder="Your Name"
                     className="mt-2 ring-1 ring-gray-300 w-full rounded-md px-4 py-2 outline-none focus:ring-2 focus:ring-teal-300"
@@ -79,6 +84,7 @@ function Contact() {
                   </label>
 
                   <input
+                    required
                     type="text"
                     placeholder="Email"
                     className="mt-2 ring-1 ring-gray-300 w-full rounded-md px-4 py-2 outline-none focus:ring-2 focus:ring-teal-300"
@@ -90,13 +96,17 @@ function Contact() {
                   </label>
 
                   <textarea
+                    required
                     type="text"
                     rows="4"
                     placeholder="Message"
                     className="mt-2 ring-1 ring-gray-300 w-full rounded-md px-4 py-2 outline-none focus:ring-2 focus:ring-teal-300"
                   />
                 </div>
-                <button className="inline-block self-end bg-cyan-700 text-white font-bold rounded-lg px-6 py-2 uppercasetext-sm">
+                <button
+                  type="submit"
+                  className="inline-block self-end bg-cyan-700 text-white font-bold rounded-lg px-6 py-2 uppercasetext-sm"
+                >
                   Send Message
                 </button>
               </form>

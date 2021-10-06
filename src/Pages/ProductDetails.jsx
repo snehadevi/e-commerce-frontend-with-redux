@@ -14,12 +14,12 @@ function ProductDetails({ match, history }) {
 
   return (
     <div>
-      <section class="text-gray-700 body-font overflow-hidden bg-white">
+      <section class="w-full max-h-full text-gray-700 body-font overflow-hidden bg-white">
         <div class="container px-5 py-24 mx-auto">
           <div class="lg:w-4/5 mx-auto flex flex-wrap">
             <img
               alt="ecommerce"
-              class="lg:w-1/2 w-full shadow-lg p-8 object-cover object-center rounded border border-gray-200"
+              class="mx-auto w-2/3 sm:1/2 lg:w-2/5 shadow-lg sm:p-8 object-cover object-center rounded border border-gray-200"
               src={product.image}
             />
             <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">

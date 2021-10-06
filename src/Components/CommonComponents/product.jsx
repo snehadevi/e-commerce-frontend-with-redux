@@ -64,7 +64,7 @@ function Product({ product, history }) {
         )}
 
         {count > 0 && (
-          <a className="justify-center bg-gradient-to-r from-red-600 to-pink-500 rounded-full py-2 px-6 text-gray-50 flex flex-row hover:from-pink-600 hover:to-pink-600 object-bottom">
+          <a className="justify-center bg-gradient-to-r from-cyan-800 to-teal-600 rounded-full py-2 px-6 text-gray-50 flex flex-row hover:from-cyan-600 hover:to-cyan-600 object-bottom">
             <MinusCircle
               onClick={() => dispatch(actions.Decrement({ product }))}
             />

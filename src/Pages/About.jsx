@@ -14,8 +14,8 @@ function About() {
         </section>
       </div> */}
       <div className=" flex w-full min-h-screen justify-center items-center">
-        <div className="flex flex-col sm:flex-row bg-gray-700 h-full sm:h-400 w-full max-w-4xl rounded-xl shadow-lg text-white overflow-hidden">
-          <div className="bg-cyan-700 p-8 w-full sm:w-1/4 min-w-min h-full">
+        <div className="flex flex-col sm:flex-row bg-cyan-700 h-full sm:h-400 w-full max-w-4xl sm:rounded-xl shadow-lg text-white overflow-hidden">
+          <div className="m-10 sm:m-0 bg-cyan-700 p-8 w-full sm:w-1/4 min-w-min h-full">
             <h1 className="font-bold text-4xl tracking-wide">SHOP CIRCLE</h1>
             <p className="pt-2 text-cyan-100">Your trustworthy partner!</p>
           </div>

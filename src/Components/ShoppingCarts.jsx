@@ -18,7 +18,7 @@ export default function ShoppingCarts({ open, setOpen }) {
     <Transition.Root show={open} as={Fragment}>
       <Dialog
         as="div"
-        className="fixed inset-0 overflow-hidden"
+        className="fixed inset-0 overflow-hidden z-20"
         onClose={setOpen}
       >
         <div className="absolute inset-0 overflow-hidden">

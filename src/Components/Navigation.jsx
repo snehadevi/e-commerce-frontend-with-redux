@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import ShoppingCarts from "./ShoppingCarts";
 import "../css/tailwind.css";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { actions } from "../Redux/Slice";
 
 const navItem = [
   { name: "HOME", to: "/", current: true },
@@ -13,7 +15,10 @@ const navItem = [
 ];
 
 function Navigation({ currentItem }) {
-  const { countTotal } = useSelector((state) => state);
+  const dispatch = useDispatch();
+  const { countTotal, counts, selectedProducts } = useSelector(
+    (state) => state
+  );
   const [hidden, sethidden] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -25,6 +30,13 @@ function Navigation({ currentItem }) {
         obj.current = true;
       }
     });
+  };
+
+  const handleOnClick = () => {
+    const zeroFilter = selectedProducts.filter((p) => counts[p.id] === "");
+    console.log(zeroFilter);
+    zeroFilter.map((product) => dispatch(actions.RemoveProduct({ product })));
+    setOpen(true);
   };
 
   return (
@@ -65,7 +77,7 @@ function Navigation({ currentItem }) {
             <div className="flex flex-row">
               <div>
                 <a
-                  onClick={() => setOpen(true)}
+                  onClick={() => handleOnClick()} //
                   className="bg-cyan-700 shadow-lg text-gray-50 hover:bg-cyan-600 p-3 px-5 rounded-full sm:mr-5"
                 >
                   <ShoppingCartOutline className="inline-block" />
